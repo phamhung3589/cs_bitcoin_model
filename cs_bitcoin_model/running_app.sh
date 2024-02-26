@@ -1,0 +1,1 @@
+nohup uvicorn main:app --host 0.0.0.0 --port 2096 --ssl-keyfile ./cert/nginx.cryptosloth.io.key --ssl-certfile ./cert/nginx.cryptosloth.io.crt &
