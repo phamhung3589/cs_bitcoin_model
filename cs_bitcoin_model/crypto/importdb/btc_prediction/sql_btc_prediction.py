@@ -4,7 +4,7 @@ import pandas as pd
 
 from mysql.connector import Error
 
-from cs_bitcoin_model.crypto.aggregate.btc_prediction.worker_predict_btc_price import BtcPredict, get_current_price
+# from cs_bitcoin_model.crypto.aggregate.btc_prediction.worker_predict_btc_price import BtcPredict, get_current_price
 from cs_bitcoin_model.crypto.utils.cs_config import CSConfig
 from datetime import datetime
 

@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 setup(
     name='cs_bitcoin_model',
-    version='0.0.5',
+    version='0.0.8',
     keywords=("cs_bitcoin_model", "cs", "bitcoin model"),
     url="https://github.com/phamhung3589/cs_bitcoin_model.git",
     author='hungph',
