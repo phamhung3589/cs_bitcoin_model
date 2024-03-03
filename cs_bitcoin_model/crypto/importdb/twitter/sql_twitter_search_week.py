@@ -2,9 +2,9 @@ import mysql.connector
 import requests
 from mysql.connector import Error
 
-from crypto.aggregate.social.twitter_recent_search import TwitterRecentSearch, get_query_sol, get_query_eth, \
+from cs_bitcoin_model.crypto.aggregate.social.twitter_recent_search import TwitterRecentSearch, get_query_sol, get_query_eth, \
     get_query_bnb, get_tweets_recent_search, get_tweets_search_7_days
-from crypto.utils.cs_config import CSConfig
+from cs_bitcoin_model.crypto.utils.cs_config import CSConfig
 from datetime import datetime
 
 

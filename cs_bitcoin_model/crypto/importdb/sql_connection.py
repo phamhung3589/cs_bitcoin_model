@@ -2,11 +2,11 @@ import mysql.connector
 
 from mysql.connector import Error
 
-from crypto.utils.constants import list_indicators
-from crypto.utils.cs_config import CSConfig
+from cs_bitcoin_model.crypto.utils.constants import list_indicators
+from cs_bitcoin_model.crypto.utils.cs_config import CSConfig
 from datetime import datetime
 
-from crypto.utils.db_utils import parse_string
+from cs_bitcoin_model.crypto.utils.db_utils import parse_string
 
 
 class SqlConnector:

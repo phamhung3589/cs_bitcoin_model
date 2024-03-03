@@ -2,7 +2,7 @@ import requests
 import json
 from datetime import datetime, date
 
-from crypto.utils.cs_config import CSConfig
+from cs_bitcoin_model.crypto.utils.cs_config import CSConfig
 
 
 class TwitterRecentSearch:

@@ -1,4 +1,4 @@
-from crypto.aggregate.btc_prediction.binance_client import BinanceClient
+from cs_bitcoin_model.crypto.aggregate.btc_prediction.binance_client import BinanceClient
 
 
 def get_all_staking_pair():

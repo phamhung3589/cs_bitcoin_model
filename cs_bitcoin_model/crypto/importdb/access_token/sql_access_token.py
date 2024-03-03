@@ -1,7 +1,7 @@
 import mysql.connector
 
 from mysql.connector import Error
-from crypto.utils.cs_config import CSConfig
+from cs_bitcoin_model.crypto.utils.cs_config import CSConfig
 
 
 class SqlAccessToken:

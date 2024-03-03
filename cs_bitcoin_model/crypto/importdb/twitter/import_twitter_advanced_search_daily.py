@@ -2,8 +2,8 @@ import click
 
 from datetime import datetime, timedelta
 
-from crypto.aggregate.social.twitter_recent_search import get_advanced_filter_tweets_daily
-from crypto.importdb.twitter.sql_twitter_advanced_filter_daily import SqlTwitterAdvanceFilterDailyConnection
+from cs_bitcoin_model.crypto.aggregate.social.twitter_recent_search import get_advanced_filter_tweets_daily
+from cs_bitcoin_model.crypto.importdb.twitter.sql_twitter_advanced_filter_daily import SqlTwitterAdvanceFilterDailyConnection
 
 
 @click.command()

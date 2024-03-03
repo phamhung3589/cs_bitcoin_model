@@ -1,7 +1,7 @@
 import click
 
-from crypto.aggregate.cryoto_quant.crypto_quant_api import AggregateCryptoQuanIndicator
-from crypto.importdb.sql_connection import SqlConnector
+from cs_bitcoin_model.crypto.aggregate.cryoto_quant.crypto_quant_api import AggregateCryptoQuanIndicator
+from cs_bitcoin_model.crypto.importdb.sql_connection import SqlConnector
 from datetime import datetime
 
 

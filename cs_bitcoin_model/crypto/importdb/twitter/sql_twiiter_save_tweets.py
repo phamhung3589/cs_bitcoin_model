@@ -2,7 +2,7 @@ import mysql.connector
 import requests
 
 from mysql.connector import Error
-from crypto.utils.cs_config import CSConfig
+from cs_bitcoin_model.crypto.utils.cs_config import CSConfig
 from datetime import datetime
 
 

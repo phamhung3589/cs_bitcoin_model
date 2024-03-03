@@ -1,0 +1,8 @@
+
+python setup.py bdist_egg
+python setup.py sdist
+twine upload dist/cs-bitcoin-model-1.0.8.tar.gz --skip-existing
+pip install --upgrade --no-cache-dir cs-bitcoin-model
+
+
+pip uninstall AADeepLearning

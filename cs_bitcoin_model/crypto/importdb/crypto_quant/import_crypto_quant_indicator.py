@@ -2,8 +2,8 @@ import click
 
 from datetime import datetime, timedelta
 
-from crypto.aggregate.cryoto_quant.crypto_quant_api import AggregateCryptoQuanIndicator
-from crypto.importdb.crypto_quant.sql_cryptoquant_indicator import SqlCryptoQuantRawValue
+from cs_bitcoin_model.crypto.aggregate.cryoto_quant.crypto_quant_api import AggregateCryptoQuanIndicator
+from cs_bitcoin_model.crypto.importdb.crypto_quant.sql_cryptoquant_indicator import SqlCryptoQuantRawValue
 
 
 @click.command()

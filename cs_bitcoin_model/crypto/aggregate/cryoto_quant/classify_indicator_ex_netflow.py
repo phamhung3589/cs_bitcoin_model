@@ -1,5 +1,5 @@
-from crypto.utils.constants import ValueImportance
-from crypto.utils.cs_config import CSConfig
+from cs_bitcoin_model.crypto.utils.constants import ValueImportance
+from cs_bitcoin_model.crypto.utils.cs_config import CSConfig
 
 
 class ClassifyIndicatorExNet:

@@ -1,7 +1,7 @@
 from jose import JWTError, jwt
 import base64
 
-from crypto.utils.constants import Constants
+from cs_bitcoin_model.crypto.utils.constants import Constants
 
 
 def parse_string(data: str):
