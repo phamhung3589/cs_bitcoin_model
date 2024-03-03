@@ -5,7 +5,7 @@ from typing import Optional, Dict, Any, List
 from requests import Request, Session, Response
 import hmac
 
-from crypto.utils.cs_config import CSConfig
+from cs_bitcoin_model.crypto.utils.cs_config import CSConfig
 
 
 class FtxClient:

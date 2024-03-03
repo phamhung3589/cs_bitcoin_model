@@ -3,8 +3,8 @@ import numpy as np
 import json
 from catboost import CatBoostClassifier, Pool
 from datetime import datetime, timedelta
-from crypto.aggregate.btc_prediction.binance_client import BinanceClient
-from crypto.utils.cs_config import CSConfig
+from cs_bitcoin_model.crypto.aggregate.btc_prediction.binance_client import BinanceClient
+from cs_bitcoin_model.crypto.utils.cs_config import CSConfig
 
 
 def get_current_price(coin_pair: str, date: str):

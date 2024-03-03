@@ -2,8 +2,8 @@ import mysql.connector
 
 from mysql.connector import Error
 
-from crypto.aggregate.social.twitter_recent_search import *
-from crypto.utils.cs_config import CSConfig
+from cs_bitcoin_model.crypto.aggregate.social.twitter_recent_search import *
+from cs_bitcoin_model.crypto.utils.cs_config import CSConfig
 from datetime import datetime
 
 

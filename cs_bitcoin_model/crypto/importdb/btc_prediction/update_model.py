@@ -5,11 +5,11 @@ from catboost import CatBoostClassifier, Pool
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, average_precision_score
 from sklearn.preprocessing import label_binarize
 
-from crypto.aggregate.btc_prediction.binance_client import BinanceClient
+from cs_bitcoin_model.crypto.aggregate.btc_prediction.binance_client import BinanceClient
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-from crypto.utils.cs_config import CSConfig
+from cs_bitcoin_model.crypto.utils.cs_config import CSConfig
 
 
 def get_history_price(coin_pair: str):

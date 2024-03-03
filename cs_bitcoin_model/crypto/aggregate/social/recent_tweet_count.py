@@ -4,7 +4,7 @@ from datetime import datetime
 
 # To set your environment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
-from crypto.utils.cs_config import CSConfig
+from cs_bitcoin_model.crypto.utils.cs_config import CSConfig
 
 
 class TwitterSearchCount:

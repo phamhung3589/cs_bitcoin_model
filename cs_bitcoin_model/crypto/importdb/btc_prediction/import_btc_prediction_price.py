@@ -2,8 +2,8 @@ import click
 
 from datetime import datetime, timedelta
 
-from crypto.aggregate.btc_prediction.worker_predict_btc_price import BtcPredict, get_current_price
-from crypto.importdb.btc_prediction.sql_btc_prediction import SqlBtcPrediction
+from cs_bitcoin_model.crypto.aggregate.btc_prediction.worker_predict_btc_price import BtcPredict, get_current_price
+from cs_bitcoin_model.crypto.importdb.btc_prediction.sql_btc_prediction import SqlBtcPrediction
 
 
 @click.command()

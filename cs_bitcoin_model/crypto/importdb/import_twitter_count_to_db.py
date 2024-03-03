@@ -1,9 +1,9 @@
 import click
 
-from crypto.aggregate.social import recent_tweet_count
+from cs_bitcoin_model.crypto.aggregate.social import recent_tweet_count
 from datetime import datetime, timedelta
 
-from crypto.importdb.sql_twitter_connection import SqlTwitterConnection
+from cs_bitcoin_model.crypto.importdb.sql_twitter_connection import SqlTwitterConnection
 
 
 @click.command()

@@ -12,25 +12,25 @@ from fastapi.security import OAuth2PasswordBearer, HTTPAuthorizationCredentials,
 from pydantic import BaseModel
 from datetime import datetime
 
-from crypto.aggregate.btc_prediction.binance_client import BinanceClient
-from crypto.aggregate.btc_prediction.worker_predict_btc_price import BtcPredict
-from crypto.aggregate.defi.staking import get_all_staking_pair
-from crypto.importdb.access_token.sql_access_token import SqlAccessToken
-from crypto.importdb.btc_prediction.sql_btc_prediction import SqlBtcPrediction
-from crypto.importdb.crypto_quant.sql_cryptoquant_indicator import SqlCryptoQuantRawValue
-from crypto.importdb.sql_connection import SqlConnector
+# from cs_bitcoin_model.crypto.aggregate.btc_prediction.binance_client import BinanceClient
+# from cs_bitcoin_model.crypto.aggregate.btc_prediction.worker_predict_btc_price import BtcPredict
+# from cs_bitcoin_model.crypto.aggregate.defi.staking import get_all_staking_pair
+from cs_bitcoin_model.crypto.importdb.access_token.sql_access_token import SqlAccessToken
+from cs_bitcoin_model.crypto.importdb.btc_prediction.sql_btc_prediction import SqlBtcPrediction
+from cs_bitcoin_model.crypto.importdb.crypto_quant.sql_cryptoquant_indicator import SqlCryptoQuantRawValue
+from cs_bitcoin_model.crypto.importdb.sql_connection import SqlConnector
 from datetime import datetime, date, timedelta
 from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 from fastapi.middleware.cors import CORSMiddleware
 
-from crypto.importdb.sql_twitter_connection import SqlTwitterConnection
-from crypto.importdb.twitter.sql_twiiter_save_tweets import SqlTwitterSaveTweetsConnection
-from crypto.importdb.twitter.sql_twitter_advanced_filter_daily import SqlTwitterAdvanceFilterDailyConnection
-from crypto.importdb.twitter.sql_twitter_advanced_filter_weekly import SqlTwitterAdvanceFilterWeeklyConnection
-from crypto.importdb.twitter.sql_twitter_recent_search import SqlTwitterRecentSearchConnection
-from crypto.importdb.twitter.sql_twitter_search_week import SqlTwitterSearchWeekConnection
-from crypto.utils import constants
-from crypto.utils.db_utils import decode_token, calculate_sloth_index
+from cs_bitcoin_model.crypto.importdb.sql_twitter_connection import SqlTwitterConnection
+from cs_bitcoin_model.crypto.importdb.twitter.sql_twiiter_save_tweets import SqlTwitterSaveTweetsConnection
+from cs_bitcoin_model.crypto.importdb.twitter.sql_twitter_advanced_filter_daily import SqlTwitterAdvanceFilterDailyConnection
+from cs_bitcoin_model.crypto.importdb.twitter.sql_twitter_advanced_filter_weekly import SqlTwitterAdvanceFilterWeeklyConnection
+from cs_bitcoin_model.crypto.importdb.twitter.sql_twitter_recent_search import SqlTwitterRecentSearchConnection
+from cs_bitcoin_model.crypto.importdb.twitter.sql_twitter_search_week import SqlTwitterSearchWeekConnection
+from cs_bitcoin_model.crypto.utils import constants
+from cs_bitcoin_model.crypto.utils.db_utils import decode_token, calculate_sloth_index
 
 app = FastAPI(reload=True)
 
@@ -67,7 +67,7 @@ quant_indicator_raw_values = {}
 staking = {}
 
 # Load model for btc client
-btc_client = BtcPredict()
+# btc_client = BtcPredict()
 
 # oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
@@ -82,38 +82,38 @@ def get_authorization_token(auth: HTTPAuthorizationCredentials = Security(HTTPBe
     return auth.credentials
 
 
-@app.get("/crypto_indicators/daily", tags=["crypto indicator"])
-async def get_indicators():
-    global cryptoquant_indicator_daily
-    running_date = date.today() - timedelta(days=1)
-    if running_date in cryptoquant_indicator_daily:
-        return cryptoquant_indicator_daily[running_date]
-
-    sqlConnector = SqlConnector()
-    result = sqlConnector.get_data_from_db(running_date.strftime("%Y-%m-%d"))
-
-    sql_client_quant = SqlCryptoQuantRawValue()
-    result_raw = sql_client_quant.get_all_data("20220101")
-    sql_client_quant.close()
-
-    for i in range(len(result["data"])):
-        result["data"][i]["chart"] = result_raw[result["data"][i]["name"]]
-
-    # Get history data of btc
-    client = BinanceClient()
-    start_date_btc_price = datetime.strptime('2022/01/01', "%Y/%m/%d")
-    current_date_btc_price = datetime.utcnow().replace(minute=0, second=0)
-    delta = (current_date_btc_price - start_date_btc_price).days + 1
-    df = client.get_historical_data(delta, time_range=Client.KLINE_INTERVAL_1DAY)["close"].reset_index()
-    df["dateTime"] = pd.to_datetime(df["dateTime"], format="%Y_%m_%d %H:%M:%S")
-    df["dateTime"] = df["dateTime"].dt.strftime("%Y%m%d")
-    df = df.set_index("dateTime")
-    result["btc_price_hist"] = df.to_dict()["close"]
-    client.close()
-
-    cryptoquant_indicator_daily = {running_date: result}
-
-    return result
+# @app.get("/crypto_indicators/daily", tags=["crypto indicator"])
+# async def get_indicators():
+#     global cryptoquant_indicator_daily
+#     running_date = date.today() - timedelta(days=1)
+#     if running_date in cryptoquant_indicator_daily:
+#         return cryptoquant_indicator_daily[running_date]
+#
+#     sqlConnector = SqlConnector()
+#     result = sqlConnector.get_data_from_db(running_date.strftime("%Y-%m-%d"))
+#
+#     sql_client_quant = SqlCryptoQuantRawValue()
+#     result_raw = sql_client_quant.get_all_data("20220101")
+#     sql_client_quant.close()
+#
+#     for i in range(len(result["data"])):
+#         result["data"][i]["chart"] = result_raw[result["data"][i]["name"]]
+#
+#     # Get history data of btc
+#     client = BinanceClient()
+#     start_date_btc_price = datetime.strptime('2022/01/01', "%Y/%m/%d")
+#     current_date_btc_price = datetime.utcnow().replace(minute=0, second=0)
+#     delta = (current_date_btc_price - start_date_btc_price).days + 1
+#     df = client.get_historical_data(delta, time_range=Client.KLINE_INTERVAL_1DAY)["close"].reset_index()
+#     df["dateTime"] = pd.to_datetime(df["dateTime"], format="%Y_%m_%d %H:%M:%S")
+#     df["dateTime"] = df["dateTime"].dt.strftime("%Y%m%d")
+#     df = df.set_index("dateTime")
+#     result["btc_price_hist"] = df.to_dict()["close"]
+#     client.close()
+#
+#     cryptoquant_indicator_daily = {running_date: result}
+#
+#     return result
 
 
 @app.get("/crypto_indicators/{running_date}", tags=["crypto indicator"])
@@ -197,22 +197,22 @@ async def fear_and_greed_index():
         raise ValueError('cannot get data from https://alternative.me/')
 
 
-@app.get("/token/prediction/{token_pair}", tags=["token_prediction"], description="token_pair default = btcusdt")
-async def predict_btc_price(token_pair: str):
-    if token_pair == "btcusdt":
-        global btc_prediction_result
-        current_time = datetime.utcnow().replace(minute=0, second=0)
-        current_time = current_time.strftime("%Y_%m_%d %H:%M:%S")
-
-        if current_time in btc_prediction_result:
-            return btc_prediction_result[current_time]
-
-        result = btc_client.predict(current_time)
-        btc_prediction_result = {current_time: result}
-
-        return result
-    else:
-        raise ValueError("error value token pair")
+# @app.get("/token/prediction/{token_pair}", tags=["token_prediction"], description="token_pair default = btcusdt")
+# async def predict_btc_price(token_pair: str):
+#     if token_pair == "btcusdt":
+#         global btc_prediction_result
+#         current_time = datetime.utcnow().replace(minute=0, second=0)
+#         current_time = current_time.strftime("%Y_%m_%d %H:%M:%S")
+#
+#         if current_time in btc_prediction_result:
+#             return btc_prediction_result[current_time]
+#
+#         result = btc_client.predict(current_time)
+#         btc_prediction_result = {current_time: result}
+#
+#         return result
+#     else:
+#         raise ValueError("error value token pair")
 
 
 @app.get("/token/prediction_history/{token_pair}", tags=["token_prediction"], description="token_pair default = btcusdt")
@@ -464,17 +464,17 @@ async def delete_tweets(delete_tweets, response: Response, access_token=Depends(
     return {"status": "delete done"}
 
 
-@app.get("/staking/all_pairs", tags=["staking-farming"])
-async def get_staking_apy():
-    global staking
-    current_time = datetime.utcnow().replace(minute=0, second=0).strftime("%Y-%m-%dT%H:%M:%S")
-    if current_time in staking:
-        return staking[current_time]
-
-    result = get_all_staking_pair()
-    staking = {current_time: result}
-
-    return result
+# @app.get("/staking/all_pairs", tags=["staking-farming"])
+# async def get_staking_apy():
+#     global staking
+#     current_time = datetime.utcnow().replace(minute=0, second=0).strftime("%Y-%m-%dT%H:%M:%S")
+#     if current_time in staking:
+#         return staking[current_time]
+#
+#     result = get_all_staking_pair()
+#     staking = {current_time: result}
+#
+#     return result
 
 
 if __name__ == '__main__':

@@ -2,7 +2,7 @@ from binance.client import Client
 import pandas as pd
 import datetime
 pd.options.display.width = 0
-from crypto.utils.cs_config import CSConfig
+from cs_bitcoin_model.crypto.utils.cs_config import CSConfig
 
 
 class BinanceClient:
